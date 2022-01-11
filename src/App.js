@@ -11,45 +11,60 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Transaction from "./pages/transaction/Transaction";
+import Login from "./pages/login/Login.jsx";
+import TransactionInfo from "./pages/transactionInfo/TransactionInfo";
 
 function App() {
   return (
     <Router>
       <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          {/* User page */}
-          <Route path="/users">
-            <UserList />
-          </Route>
-          <Route path="/user/:userId">
-            <User />
-          </Route>
-          <Route path="/newUser">
-            <NewUser />
-          </Route>
+      <Switch>
+        {/* Login Page */}
+        <Route path="/login">
+          <Login />
+        </Route>
+        {
+          <>
+            <div className="container">
+              <Sidebar />
+              <Route exact path="/">
+                <Home />
+              </Route>
 
-          {/* Products page */}
-          <Route path="/products">
-            <ProductList />
-          </Route>
-          <Route path="/product/:productId">
-            <Product />
-          </Route>
-          <Route path="/newproduct">
-            <NewProduct/>
-          </Route>
+              {/* User page */}
+              <Route path="/users">
+                <UserList />
+              </Route>
+              <Route path="/user/:userId">
+                <User />
+              </Route>
+              <Route path="/newUser">
+                <NewUser />
+              </Route>
 
-          {/* Transactions page */}
-          <Route path="/transactions">
-            <Transaction/>
-          </Route>
-        </Switch>
-      </div>
+              {/* Products page */}
+              <Route path="/products">
+                <ProductList />
+              </Route>
+              <Route path="/product/:productId">
+                <Product />
+              </Route>
+              <Route path="/newproduct">
+                <NewProduct />
+              </Route>
+
+              {/* Transactions page */}
+              <Route path="/transactions">
+                <Transaction />
+              </Route>
+              {/* Transactions Info page */}
+              <Route path="/transaction/:orderId">
+                <TransactionInfo />
+              </Route>
+            </div>
+          </>
+        }
+      </Switch>
     </Router>
   );
 }

@@ -1,6 +1,7 @@
 .newUser{
+      min-width: 0;
       flex:4;
-      margin-left: 15px;
+      margin-left: 20px;
       margin-right: 20px;
       height: 100%;
       padding: 50px;

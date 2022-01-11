@@ -1,61 +1,103 @@
-.transaction{
-      flex: 4;
-      -webkit-box-shadow: 1px 1px 14px -6px #000000; 
-      box-shadow: 1px 1px 14px -6px #000000;
-      padding: 20px;
-      margin-right: 20px;
-      margin-left: 15px;
+/* .transaction {
+  flex: 4;
+  -webkit-box-shadow: 0px 8px 22px -9px rgba(0, 0, 0, 0.67);
+  box-shadow: 0px 8px 22px -9px rgba(0, 0, 0, 0.67);
+  margin-right: 20px;
+  padding: 20px;
+  margin-left: 20px;
+  min-width: 0;
+  border: none;
 }
 
-.transactionTitle{
-      font-size: 24px;
-      font-weight: 600;
+.transactionTitle {
+  font-size: 24px;
+  font-weight: 600;
 }
 
-.transactionTable{
-      width: 100%;
-      border-spacing: 20px;
+.transactionTable {
+  width: 100%;
+  border-spacing: 20px;
+  margin-left: 20px;
 }
 
-.transactionth{
-      text-align: left;
+.transactionth {
+  text-align: left;
 }
 
-.transactionUser{
-      display: flex;
-      align-items: center;
-      font-weight: 600;
+.transactionUser {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
 }
 
-.transactionDate,.transactionAmount{
-      font-weight: 300;
+.transactionDate,
+.transactionAmount {
+  font-weight: 300;
 }
 
-.transactionImg{
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 14px;
+.transactionImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 14px;
 }
 
-.transactionButton{
-      padding: 5px 7px;
-      border: none;
-      border-radius: 10px;
+.transactionButton {
+  padding: 5px 7px;
+  border: none;
+  border-radius: 10px;
 }
 
-.transactionButton.Approved{
-      background-color: #e2fff4;
-      color: #01e28c;   
+.transactionButton.approved {
+  background-color: #e2fff4;
+  color: #01e28c;
 }
 
-.transactionButton.Declined{
-      background-color: #fff0f1;
-      color: #fa1020;
+.transactionButton.declined {
+  background-color: #fff0f1;
+  color: #fa1020;
 }
 
-.transactionButton.Pending{
-      background-color: #ebf1fe;
-      color: #125bf8;
+.transactionButton.pending {
+  background-color: #ebf1fe;
+  color: #125bf8;
+} */
+
+.productList {
+  flex: 4;
+  margin-left: 20px;
+  margin-right: 20px;
+  -webkit-box-shadow: 0px 8px 22px -9px rgba(0, 0, 0, 0.67);
+  box-shadow: 0px 8px 22px -9px rgba(0, 0, 0, 0.67);
+  min-width: 0;
+  border: none;
+}
+
+.productListItem {
+  display: flex;
+  align-items: center;
+}
+
+.productListImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.productListEdit {
+  border-radius: 10px;
+  background-color: rgb(126, 185, 126);
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.productListDelete {
+  color: rgb(253, 31, 105);
+  cursor: pointer;
 }

@@ -1,47 +1,48 @@
-.sidebar{
-      flex: 1;
-      height: calc(100vh - 50px);
-      background-color: rgb(247, 247, 255);
-      border-radius: 15px;
-      position: sticky;
-      top: 50px;
+.sidebar {
+  width: 250px;
+  height: calc(100vh - 50px);
+  background-color: rgb(247, 247, 255);
+  border-radius: 15px;
+  position: sticky;
+  top: 50px;
+  min-width: 0;
 }
 
-.sidebarWrapper{
-      padding: 20px;
-      color: #555;
+.sidebarWrapper {
+  padding: 20px;
+  color: #555;
 }
 
-.sidebarMenu{
-      margin-top: 12px;
+.sidebarMenu {
+  margin-top: 12px;
 }
 
-.sidebarTitle{
-      font-size: 13px;
-      color: rgb(184, 184, 184);
+.sidebarTitle {
+  font-size: 13px;
+  color: rgb(184, 184, 184);
 }
 
-.sidebarList{
-      list-style: none;
-      padding: 5px;
+.sidebarList {
+  list-style: none;
+  padding: 5px;
 }
 
-.sidebarListItem{
-      padding: 5px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      border-radius: 12px;
+.sidebarListItem {
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
 }
 
-.sidebarListItem.active{
-      background-color: rgb(233, 233, 245);
+.sidebarListItem.active {
+  background-color: rgb(233, 233, 245);
 }
 
-.sidebarListItem:hover{
-      background-color: rgb(240, 242, 255);
+.sidebarListItem:hover {
+  background-color: rgb(240, 242, 255);
 }
-.sidebarIcon{
-      padding-right: 5px;
-      font-size: 20px !important;
+.sidebarIcon {
+  padding-right: 5px;
+  font-size: 20px !important;
 }
