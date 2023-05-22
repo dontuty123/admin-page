@@ -2,7 +2,7 @@ import Topbar from "./components/topbar/Topbar";
 import Sidebar from "./components/sidebar/Sidebar";
 import Home from "./pages/home/Home";
 import "./app.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
@@ -15,6 +15,18 @@ import Login from "./pages/login/Login.jsx";
 import TransactionInfo from "./pages/transactionInfo/TransactionInfo";
 
 function App() {
+  const TOKEN =
+    JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user || "{}")
+      ?.currentUser?.accessToken || "";
+  const handleRedirect = () => {
+    if (!TOKEN && !(window.location.pathname === "/login")) {
+      window.location.href = "login";
+      return;
+    }
+  };
+  useEffect(() => {
+    handleRedirect();
+  }, [TOKEN]);
   return (
     <Router>
       <Topbar />

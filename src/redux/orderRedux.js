@@ -38,10 +38,26 @@ export const orderSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+
+    //UPDATE
+    updateOrderStart: (state) => {
+      state.isFetching = true;
+    },
+    updateOrderSuccess: (state, action) => {
+      state.isFetching = false;
+      state.orders = action.payload;
+    },
+    updateOrderFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
   },
 });
 
 export const {
+  updateOrderStart,
+  updateOrderSuccess,
+  updateOrderFailure,
   getOrderStart,
   getOrderFailure,
   getOrderSuccess,

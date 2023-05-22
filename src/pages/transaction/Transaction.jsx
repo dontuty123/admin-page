@@ -63,41 +63,55 @@ import { DeleteOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOrder, getOrders } from "../../redux/apiCalls";
+import { deleteOrder, getOrders, updateOrder } from "../../redux/apiCalls";
 import { useState } from "react";
 import { userRequest } from "../../requestMethod";
 
 export default function Transaction() {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.order.orders);
-  console.log(orders);
   const [ord, setOrd] = useState([]);
+  const [changeOrder, setChangeOrder] = useState([]);
 
-  const reload = () => {
-    window.location.reload(false);
+  console.log("ord", ord);
+
+  const handleChangeStatus = async (value, params) => {
+    const ord = params?.row || {};
+    const rs = await userRequest.put(`orders/${params?.id}`, {
+      ...ord,
+      status: value,
+    });
+    if (rs.status == 200) {
+      alert("Cap nhat thanh cong");
+      await getOrd();
+    } else {
+      alert("Loi he thong");
+    }
   };
 
+  const getOrd = async () => {
+    try {
+      const res = await userRequest.get("orders");
+      const list = res.data
+        .sort((a, b) => {
+          return (
+            new Date(a.scheduled_for).getTime() -
+            new Date(b.scheduled_for).getTime()
+          );
+        })
+        .reverse();
+      setOrd(list);
+    } catch {}
+  };
   useEffect(() => {
-    const getOrd = async () => {
-      try {
-        const res = await userRequest.get("orders");
-        const list = res.data
-          .sort((a, b) => {
-            return (
-              new Date(a.scheduled_for).getTime() -
-              new Date(b.scheduled_for).getTime()
-            );
-          })
-          .reverse();
-        setOrd(list);
-      } catch {}
-    };
     getOrd();
   }, []);
 
-  const handleDelete = (id) => {
-    deleteOrder(id, dispatch);
-    reload();
+  const handleDelete = async (id) => {
+    const rs = await deleteOrder(id, dispatch);
+    if (rs === 200) {
+      await getOrd();
+    }
   };
 
   useEffect(() => {
@@ -105,14 +119,11 @@ export default function Transaction() {
   }, [dispatch]);
 
   const columns = [
-    { field: "username", headerName: "User Name", width: 120 },
+    { field: "fullname", headerName: "User Name", width: 120 },
     {
-      field: "_id",
-      headerName: "Orders ID",
+      field: "phone",
+      headerName: "Phone",
       width: 200,
-      // renderCell: (params) => {
-      //   return <div className="productListItem">{params.row._id}</div>;
-      // },
     },
     {
       field: "amount",
@@ -128,6 +139,24 @@ export default function Transaction() {
       field: "status",
       headerName: "Status",
       width: 110,
+
+      renderCell: (params) => {
+        const disabled = params.row.status === "approve";
+        return (
+          <>
+            <select
+              value={params.row.status}
+              name="status"
+              disabled={disabled}
+              onChange={(e) => handleChangeStatus(e.target.value, params)}
+              className="status"
+            >
+              <option value="pending">Pending</option>
+              <option value="approve">Approved</option>
+            </select>
+          </>
+        );
+      },
     },
     {
       field: "action",

@@ -15,6 +15,10 @@ export default function NewProduct() {
   const [inputs, setInputs] = useState([]);
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
+  const [state, setState] = useState({
+    size: [],
+    color: [],
+  });
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -27,6 +31,13 @@ export default function NewProduct() {
   const handleCat = (e) => {
     setCat(e.target.value);
   };
+
+  function handleChangeState(type, value) {
+    state[type].push(value);
+    setState({
+      ...state,
+    });
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -66,6 +77,8 @@ export default function NewProduct() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const product = {
             ...inputs,
+            color: state.color,
+            size: state.size,
             img: downloadURL,
             categories: cat,
           };
@@ -74,8 +87,11 @@ export default function NewProduct() {
       }
     );
     alert("Đã thêm sản phẩm thành công");
-    history.push("/products");
+    // history.push("/products");
   };
+
+  const listColor = ["White", "Black", "Red", "Blue", "Yellow", "Green"];
+  const listSizer = ["XS", "S", "M", "L", "XL"];
 
   return (
     <div className="newProduct">
@@ -100,6 +116,7 @@ export default function NewProduct() {
               onChange={handleChange}
             />
           </div>
+
           <div className="newProductItem">
             <label>Categories</label>
             {/* <select name="categories" onChange={handleChange} className="stock">
@@ -134,6 +151,51 @@ export default function NewProduct() {
               />
             </div>
           </div>
+
+          <div className="newProductItem">
+            <label>Size</label>
+
+            <select
+              name="size"
+              onChange={(e) => handleChangeState("size", e.target.value)}
+            >
+              <option disabled>Size</option>
+              {listSizer?.map((item, idx) => (
+                <option key={idx}>{item}</option>
+              ))}
+            </select>
+
+            <div className="state">
+              {state.size.map((item, idx) => (
+                <span key={idx} className="state1">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className=" newProductItem ">
+            <label>Color</label>
+
+            <select
+              name="size"
+              onChange={(e) => handleChangeState("color", e.target.value)}
+            >
+              <option disabled>Color</option>
+              {listColor?.map((item, idx) => (
+                <option key={idx}>{item}</option>
+              ))}
+            </select>
+
+            <div className="state">
+              {state.color.map((item, idx) => (
+                <span key={idx} className="state1">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
           <div className="newProductBottomRight">
             <div className="newProductBottomRight1">
               <div className="newProductItem">

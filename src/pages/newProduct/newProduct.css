@@ -9,6 +9,14 @@
   min-width: 0;
 }
 
+.state1 {
+  margin-right: 10px;
+}
+
+.newProductItem1 {
+  border: 1px solid black;
+}
+
 .newProductTitle {
   margin-left: 15px;
 }

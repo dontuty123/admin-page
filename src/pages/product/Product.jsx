@@ -63,6 +63,8 @@ export default function Product() {
     history.push("/products");
   }
 
+
+
   console.log(product);
 
   const MONTHS = useMemo(
