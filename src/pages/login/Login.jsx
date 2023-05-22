@@ -29,7 +29,9 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <Link to="/" className="link">
-        <button className="loginButton">Login</button>
+        <button className="loginButton" onClick={handleClick}>
+          Login
+        </button>
       </Link>
     </div>
   );

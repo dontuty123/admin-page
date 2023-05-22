@@ -11,7 +11,7 @@ import { userRequest } from "../../requestMethod";
 export default function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
-  const [pro, setPro] = useState([]);
+  const [pro, setPro] = useState(products);
 
   const reload = () => {
     window.location.reload(false);
@@ -92,13 +92,19 @@ export default function ProductList() {
       },
     },
   ];
+
+  console.log("pro", pro);
+  console.log("columns", columns);
   return (
     <div className="productList">
       <DataGrid
         rows={pro}
         disableSelectionOnClick
         columns={columns}
-        getRowId={(row) => row._id}
+        getRowId={(row) => {
+          console.log("row >>>>>>>>>>>>>", row);
+          return row?._id;
+        }}
         pageSize={8}
         rowsPerPageOptions={[10]}
         checkboxSelection

@@ -39,11 +39,16 @@ import {
   deleteOrderSuccess,
 } from "./orderRedux";
 
+export const logout = async (dispatch) => {
+  console.log("dispatch", dispatch);
+  dispatch(logout());
+};
+
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await publicRequest.post("/auth/login", user);
-    dispatch(loginSuccess(res.data));
+    dispatch(loginSuccess(res?.data));
   } catch (err) {
     dispatch(loginFailure());
   }
@@ -52,7 +57,7 @@ export const login = async (dispatch, user) => {
 export const getProducts = async (dispatch) => {
   dispatch(getProductStart());
   try {
-    const res = await publicRequest.get("/products");
+    const res = await userRequest.get("/products");
     dispatch(getProductSuccess(res.data));
   } catch (err) {
     dispatch(getProductFailure());

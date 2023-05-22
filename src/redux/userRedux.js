@@ -14,6 +14,7 @@ const userSlice = createSlice({
     loginSuccess: (state, action) => {
       state.isFetching = false;
       state.currentUser = action.payload;
+      window.location.href = "/";
     },
     loginFailure: (state) => {
       state.isFetching = false;
@@ -21,6 +22,7 @@ const userSlice = createSlice({
     },
     logout: (state) => {
       state.currentUser = null;
+      // window.location.href = "login";
     },
 
     //get All
