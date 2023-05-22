@@ -103,7 +103,7 @@ export default function User() {
   function update(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/api/users/${userId}`, {
+      .put(`https://adminp.onrender.com/api/users/${userId}`, {
         username: data.username,
         fullname: data.fullname,
         email: data.email,
